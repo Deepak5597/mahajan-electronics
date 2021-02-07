@@ -1,0 +1,28 @@
+<mat-toolbar color="primary" class="top-nav">
+  <mat-icon class="hamburger-menu-icon" (click)="sidenav.toggle();" *ngIf="sidenav.opened">menu</mat-icon>
+  <mat-icon class="hamburger-menu-icon" (click)="sidenav.toggle();" *ngIf="!sidenav.opened">clear</mat-icon>
+  <span>Mahajan Electronics</span>
+  <span class="spacer"></span>
+  <mat-icon>person</mat-icon>
+</mat-toolbar>
+
+<mat-drawer-container class="sidenav-container" >
+  <mat-drawer mode="side" opened class="sidenav-items" #sidenav>
+    <mat-list class="sidenav">
+      <ng-container *ngFor="let indMenu of menuConfig;let menuIndex=index;">
+        <ng-container *ngIf="indMenu.hasChild;else menuWithoutChild">
+            <mat-list-item class="nav-item" [routerLink]="indMenu.routingPath" (click)="currentNavIndex = menuIndex"><mat-icon class="menu-icon">{{indMenu.iconName}}</mat-icon> {{indMenu.menuLabel}} </mat-list-item>
+            <mat-list class="child-nav-list" *ngIf="currentNavIndex == menuIndex">
+               <mat-list-item class="child-nav-item" *ngFor="let indChildMenu of indMenu.childConfig" [routerLink]="indChildMenu.routingPath"> {{indChildMenu.menuLabel}} </mat-list-item>
+            </mat-list>
+        </ng-container>
+        <ng-template #menuWithoutChild>
+            <mat-list-item  class="nav-item" [routerLink]="indMenu.routingPath"><mat-icon class="menu-icon">{{indMenu.iconName}}</mat-icon> {{indMenu.menuLabel}} </mat-list-item>
+        </ng-template>
+      </ng-container>
+     </mat-list>
+  </mat-drawer>
+  <mat-drawer-content class="detailed-content">
+      <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,0 +1,45 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.hamburger-menu-icon{
+  cursor: pointer;
+  margin-right: 0.2rem;
+}
+
+.top-nav{
+  height: 55px;
+  font-size: 1rem;
+}
+
+.sidenav{
+  cursor: pointer;
+  padding-top:0;
+}
+
+.sidenav-item-active{
+  background:red;
+  color:red;
+  outline: none;
+}
+
+.sidenav-container{
+  height:100%;
+}
+
+.sidenav-items{
+  min-width:225px;
+}
+
+.child-nav-list{
+  margin-left:30px;
+}
+
+.menu-icon{
+  margin-right: 1rem;
+}
+
+.detailed-content{
+    height:calc(100vh - 55px);
+}
+
